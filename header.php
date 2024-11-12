@@ -12,6 +12,7 @@
             <!--They said this will dynamically change into the user's name when logged in-->
             <span class="username" style="display: none;">Username</span>
             <script src="header.js"></script>
+            <!--Testing-->
         </div>
     </div>
 </header>
