@@ -16,6 +16,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->fetch();
 
         if (password_verify($password, $hashed_password)) {
+            $stmt->close();
+            $activity_type = "login";
+            $stmt = $conn->prepare("INSERT INTO activity_logs (account_id, activity_type) VALUES (?, ?)");
+            $stmt->bind_param("ss", $account_id, $activity_type);
+            $stmt->execute();
             $_SESSION['account_id'] = $account_id;
             header("Location: empty.php");
             exit();

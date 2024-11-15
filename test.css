@@ -14,20 +14,22 @@ body {
 
 body::before {
     content: "";
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.1);
     z-index: -1;
+    pointer-events: none;
 }
 
+/*Probably need to edit this, it still looks empty for a header*/
 header {
     width: 100%;
     background-color: #2a4dff;
     color: white;
-    padding: 1rem 0;
+    padding: 1.15rem 0;
     position: fixed;
     top: 0;
     left: 0;
@@ -35,6 +37,46 @@ header {
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+/*This is for the directory*/
+.directory {
+    margin-top: 4rem;
+    padding: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f4f6f9;
+    color: #333;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #f9fafc;
+}
+
+tr:hover {
+    background-color: #eef3fc;
+}
+
+td, th {
+    text-align: left;
+}
+
+/*These are for the classes now, just check their names*/
 .header-container {
     max-width: 1200px;
     margin: 0 auto;
