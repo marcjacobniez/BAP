@@ -1,6 +1,8 @@
 <?php
 include 'db.php';
 
+$error_message = '';
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id_number = $_POST['id_number'];
     $email = $_POST['email'];
@@ -12,9 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->store_result();
 
     if ($stmt->num_rows == 0) {
-        echo "<script>
-        alert('Invalid ID number. Please contact your administrator.');
-        </script>";
+        $error_message = "Invalid ID number. Please contact your administrator.";
     } else {
         $stmt->close();
         $stmt = $conn->prepare("SELECT email FROM account WHERE email = ?");
@@ -23,9 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->store_result();
 
         if ($stmt->num_rows > 0) {
-            echo "<script>
-            alert('This email is already registered. Please use a different email.');
-            </script>";
+            $error_message = "This email is already registered. Please use a different email.";
         } else {
             $stmt->close();
             $stmt = $conn->prepare("SELECT * FROM account WHERE id_number = ?");
@@ -34,18 +32,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->store_result();
 
             if ($stmt->num_rows > 0) {
-                echo "<script>
-                alert('This ID number is already registered.');
-                </script>";
+                $error_message = "This ID number is already registered.";
             } else {
                 $stmt->close();
                 $stmt = $conn->prepare("INSERT INTO account (id_number, email, password) VALUES (?, ?, ?)");
                 $stmt->bind_param("sss", $id_number, $email, $hashed_password);
 
                 if ($stmt->execute()) {
-                    echo "<script>
-                    alert('Registration successful!');
-                    </script>";
+                    $error_message = "Registration successful!";
                     header("Location: login.php");
                 } else {
                     echo "Error: " . $stmt->error;
@@ -64,6 +58,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <body>
     <div class="login-container">
         <h2>Register</h2>
+        <?php if (!empty($error_message)): ?>
+            <div class="error-message"><?php echo htmlspecialchars($error_message); ?></div>
+        <?php endif; ?>
         <form action="register.php" method="POST">
             ID Number: <input type="text" name="id_number" required><br>
             Email: <input type="email" name="email" required><br>

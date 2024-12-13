@@ -1,4 +1,7 @@
-<?php include 'header.php';   ?>
+<?php include 'header.php';   
+$region_query = "SELECT DISTINCT region FROM members ORDER BY region";
+$region_result = $conn->query($region_query);
+?>
 <html>
 <head>
     <link rel="stylesheet" href="test.css">
@@ -6,6 +9,17 @@
 <body>
     <div class="directory">
     <h2>Members List</h2>
+    <div class="region-filter">
+        <button class="region-btn active" data-region="all">All Regions</button>
+        <?php
+        if ($region_result->num_rows > 0) {
+            while ($region = $region_result->fetch_assoc()) {
+                $region_name = htmlspecialchars($region['region']);
+                echo "<button class='region-btn' data-region='" . $region_name . "'>" . $region_name . "</button>";
+            }
+        }
+        ?>
+    </div>
     <table id="MembersTable">
         <thead>
         <tr>
@@ -35,7 +49,7 @@
                 echo "</tr>";
             }
         } else {
-        echo "<tr><td colspan='4'>No records found</td></tr>";
+        echo "<tr><td colspan='7'>No records found</td></tr>";
         }
         ?>
         </tbody>

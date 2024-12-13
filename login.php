@@ -2,6 +2,8 @@
 session_start();
 include 'db.php';
 
+$error_message = '';
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -22,15 +24,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->bind_param("ss", $account_id, $activity_type);
             $stmt->execute();
             $_SESSION['account_id'] = $account_id;
+            $_SESSION['logged_in'] = true;
             header("Location: empty.php");
             exit();
         } else {
-            echo "Password verification failed!";
+            $error_message = "Invalid email or password.";
         }
     } else {
-        echo "<script>
-        alert('Invalid email or password.');
-        </script>";
+        $error_message = "User not found.";
     }
     
     $stmt->close();
@@ -43,6 +44,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <body>
     <div class="login-container">
         <h2>Login</h2>
+        <?php if (!empty($error_message)): ?>
+            <div class="error-message"><?php echo htmlspecialchars($error_message); ?></div>
+        <?php endif; ?>
         <form action="login.php" method="POST">
             Email: <input type="text" name="email" required><br>
             Password: <input type="password" name="password" required><br>

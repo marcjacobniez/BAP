@@ -1,8 +1,31 @@
 document.addEventListener("DOMContentLoaded", function() {
     const table = document.getElementById("MembersTable");
+    const regionButtons = document.querySelectorAll('.region-btn');
+
     table.querySelectorAll("th").forEach((header, index) => {
         header.addEventListener("click", function() {
             sortTable(index);
+        });
+    });
+
+    regionButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            regionButtons.forEach(btn => btn.classList.remove('active'));
+            
+            this.classList.add('active');
+            
+            const selectedRegion = this.getAttribute('data-region');
+            console.log(`Selected Region: ${selectedRegion}`);
+            
+            const rows = table.querySelectorAll('tbody tr');
+            rows.forEach(row => {
+                if (selectedRegion === 'all') {
+                    row.style.display = '';
+                } else {
+                    const rowRegion = row.getAttribute('data-region');
+                    row.style.display = rowRegion === selectedRegion;
+                }
+            });
         });
     });
 
@@ -30,6 +53,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 return cellB.localeCompare(cellA);
             }
         });
-        rows.forEach(row => table.appendChild(row));
+        rows.forEach(row => table.querySelector('tbody').appendChild(row));
     }
 });

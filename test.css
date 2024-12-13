@@ -77,6 +77,16 @@ td, th {
 }
 
 /*These are for the classes now, just check their names*/
+.error-message {
+    color: red;
+    background-color: #ffeeee;
+    border: 1px solid red;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    text-align: center;
+}
+
 .header-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -111,30 +121,6 @@ td, th {
 .nav-links a:hover {
     background-color: rgba(176, 224, 248, 0.3);
     color: #ffffff;
-}
-
-.user-options {
-    display: flex;
-    align-items: center;
-}
-
-.user-options a, .username {
-    margin-left: 1rem;
-    color: white;
-    font-size: 1rem;
-    font-weight: 500;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.user-options a:hover, .username:hover {
-    color: #b0e0f8;
-}
-
-/* Username styling (display:none by default until login) Idk if this will work */
-.username {
-    font-weight: bold;
-    display: none;
 }
 
 .login-container {
@@ -194,4 +180,115 @@ td, th {
 .sign-redirection {
     font-size: 0.75rem;
     text-align: center;
+}
+
+.logged-in-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-greeting {
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-right: 10px;
+}
+
+@media (max-width: 768px) {
+    .logged-in-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .user-greeting {
+        margin-right: 0;
+    }
+}
+
+.user-menu {
+    position: relative;
+}
+
+.auth-menu {
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+.auth-menu button {
+    background-color: #2a4dff   ;
+    color: #ffffff;
+    border: none;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 10px 20px;
+    margin-right: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.auth-menu button:hover {
+    background-color: rgba(176, 224, 248, 0.3);
+    color: #ffffff;
+}
+
+.region-filter {
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.region-btn {
+    padding: 8px 15px;
+    background-color: #f4f6f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.region-btn.active {
+    background-color: #2a4dff;
+    color: white;
+}
+
+.region-btn:hover {
+    background-color: #e0e4e9;
+}
+
+#nav-menu {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: transparent;
+    color: white;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 4px;
+    padding: 8px 30px 8px 12px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+}
+
+#nav-menu select {
+    padding: 8px;
+    margin-right: 10px;
+}
+
+#nav-menu:hover {
+    background-color: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.5);
+}
+
+#nav-menu option {
+    background-color: #2a4dff;
+    color: white;
+}
+
+#nav-menu option:checked {
+    background-color: #000764;
 }
