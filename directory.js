@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     row.style.display = '';
                 } else {
                     const rowRegion = row.getAttribute('data-region');
-                    row.style.display = rowRegion === selectedRegion;
+                    row.style.display = rowRegion === selectedRegion ? '' : 'none';
                 }
             });
         });
