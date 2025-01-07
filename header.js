@@ -6,11 +6,14 @@ document.addEventListener('DOMContentLoaded', function() {
     if (navMenu) {
         navMenu.addEventListener('change', function() {
             switch(this.value) {
-                case 'profile':
-                    window.location.href = 'profile.php';
+                case 'ecard':
+                    window.location.href = 'ecard.php';
                     break;
                 case 'directory':
                     window.location.href = 'directory.php';
+                    break;
+                case 'scanner':
+                    window.location.href = 'scanner.php';
                     break;
                 case 'logout':
                     window.location.href = 'header.php?logout=true';

@@ -41,10 +41,15 @@ header {
 .directory {
     margin-top: 4rem;
     padding: 20px;
+    max-width: 1500px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 table {
     width: 100%;
+    table-layout: fixed;
     border-collapse: collapse;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     background-color: white;
@@ -52,10 +57,24 @@ table {
     overflow: hidden;
 }
 
+/*This is literally BRUTE FORCING but eh. Wait, maybe it isn't.*/
+th:nth-child(1), td:nth-child(1) { width: 12%; } /*First Name*/
+th:nth-child(2), td:nth-child(2) { width: 6%; }  /*Middle Initial*/
+th:nth-child(3), td:nth-child(3) { width: 12%; } /*Surname*/
+th:nth-child(4), td:nth-child(4) { width: 12%; } /*Designation*/
+th:nth-child(5), td:nth-child(5) { width: 8%; }  /*Region*/
+th:nth-child(6), td:nth-child(6) { width: 20%; } /*Chapter*/
+th:nth-child(7), td:nth-child(7) { width: 15%; } /*Valid-Until*/
+th:nth-child(8), td:nth-child(8) { width: 15%; } /*Actions*/
+
 th, td {
     padding: 12px 15px;
     text-align: left;
     border-bottom: 1px solid #ddd;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    vertical-align: top;
 }
 
 th {
@@ -195,17 +214,6 @@ td, th {
     margin-right: 10px;
 }
 
-@media (max-width: 768px) {
-    .logged-in-container {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .user-greeting {
-        margin-right: 0;
-    }
-}
-
 .user-menu {
     position: relative;
 }
@@ -233,8 +241,27 @@ td, th {
     color: #ffffff;
 }
 
-.region-filter {
+.controls-container {
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.search-box {
+    margin-bottom: 10px;
+}
+
+.search-box input {
+    width: 100%;
+    max-width: 300px;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.region-filter {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
@@ -246,11 +273,14 @@ td, th {
     border: 1px solid #ddd;
     border-radius: 4px;
     cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
 }
 
 .region-btn.active {
     background-color: #2a4dff;
     color: white;
+    border-color: #2a4dff;
 }
 
 .region-btn:hover {
@@ -270,6 +300,7 @@ td, th {
     cursor: pointer;
     transition: all 0.3s ease;
     background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+    /*WOW MAYBE COPYING SOME CODE SOMEWHERE DOES GIVE YOU A COOLER CSS!!!*/
     background-repeat: no-repeat;
     background-position: right 8px center;
 }
@@ -291,4 +322,396 @@ td, th {
 
 #nav-menu option:checked {
     background-color: #000764;
+}
+
+.edit-btn {
+    background-color: #2a4dff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.edit-btn:hover {
+    background-color: #1a3def;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+.delete-form {
+    margin: 0;
+    padding: 0;
+}
+
+.success-message {
+    color: #2e7d32;
+    background-color: #e8f5e9;
+    border: 1px solid #a5d6a7;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.cancel-btn {
+    background-color: #6c757d !important;
+}
+
+.cancel-btn:hover {
+    background-color: #5a6268 !important;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: white;
+}
+
+/*HOLY HELL THANKS MAN*/
+.ecard-container {
+    margin-top: 5rem;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ecard {
+    background: white;
+    width: 800px;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    page-break-inside: avoid;
+}
+
+.ecard-header {
+    text-align: center;
+    border-bottom: 2px solid #2a4dff;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.ecard-logo {
+    height: 60px;
+    margin-bottom: 10px;
+}
+
+.federation-text {
+    color: #666;
+    margin-top: 5px;
+}
+
+.ecard-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+    margin: 30px 0;
+    padding-right: 20px;
+}
+
+.ecard-content {
+    flex: 1;
+    display: flex;
+    gap: 20px;
+}
+
+.member-photo {
+    width: 150px;
+    height: 150px;
+    border: 2px solid #2a4dff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.member-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.member-details {
+    flex: 1;
+}
+
+.detail-row {
+    margin-bottom: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.label {
+    font-weight: bold;
+    color: #666;
+    width: 100px;
+}
+
+.value {
+    color: #333;
+    flex: 1;
+}
+
+.ecard-footer {
+    border-top: 2px solid #2a4dff;
+    padding-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.valid-until {
+    font-weight: bold;
+    color: #2a4dff;
+}
+
+.qr-code {
+    width: 180px;
+    height: 180px;
+    padding: 10px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    align-self: center;
+    margin-right: 20px;
+}
+
+.qr-code img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.ecard-actions {
+    margin-top: 20px;
+}
+
+.action-button {
+    background: #2a4dff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.action-button:hover {
+    background: #000764;
+}
+
+/* This is for QR verification yadayada */
+.qr-verification {
+    margin-top: 4rem;
+    padding: 20px;
+    max-width: 800px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.qr-verification h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.scanner-container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+#reader {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#reader button {
+    background-color: #2a4dff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#reader button:hover {
+    background-color: #000764;
+}
+
+.scan-result {
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 8px;
+    background: #f8f9fa;
+}
+
+.scan-result h3 {
+    text-align: center;
+    color: #333;
+    margin: 0 0 15px 0;
+}
+
+.result-content {
+    padding: 20px;
+    margin-top: 15px;
+    border-radius: 8px;
+    font-size: 16px;
+    line-height: 1.5;
+    white-space: pre-line;
+}
+
+.result-content.valid {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border: 2px solid #a5d6a7;
+}
+
+.result-content.invalid {
+    background-color: #ffebee;
+    color: #c62828;
+    border: 2px solid #ffcdd2;
+}
+
+.result-content.error {
+    background-color: #fff3e0;
+    color: #e65100;
+    border: 2px solid #ffe0b2;
+}
+
+.restart-button {
+    background-color: #2a4dff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.restart-button:hover {
+    background-color: #000764;
+}
+
+/* This is for printing they said */
+@media print {
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .header, .footer {
+        display: none;
+    }
+
+    .ecard {
+        width: 100%;
+        max-width: 190mm;
+        margin: 0 auto;
+        padding: 10mm;
+        box-shadow: none;
+        page-break-inside: avoid;
+        page-break-after: avoid;
+        position: relative;
+        left: auto;
+        transform: none;
+    }
+    
+    .ecard-container {
+        margin: 0;
+        padding: 0;
+    }
+
+    .ecard-body {
+        break-inside: avoid;
+        position: relative;
+    }
+
+    .qr-code {
+        break-inside: avoid;
+        break-before: avoid;
+        break-after: avoid;
+        position: relative;
+        right: 0;
+    }
+
+    body * {
+        visibility: hidden;
+    }
+    
+    .ecard, .ecard * {
+        visibility: visible;
+    }
+}
+
+/*For screens with smaller width, obv!*/
+@media (max-width: 768px) {
+    .controls-container {
+        margin-bottom: 15px;
+    }
+
+    .search-box input {
+        max-width: 100%;
+    }
+
+    .region-filter {
+        flex-direction: column;
+    }
+
+    .region-btn {
+        width: 100%;
+    }
+    
+    .logged-in-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .user-greeting {
+        margin-right: 0;
+    }
+
+    .qr-verification {
+        padding: 15px;
+    }
+
+    .scanner-container {
+        padding: 15px;
+    }
+
+    #reader {
+        width: 100%;
+    }
 }

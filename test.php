@@ -46,9 +46,6 @@ $conn->close();
 </head>
 <body>
     <div class="login-container">
-        <!--<div class="icon">
-          <img src="image/hyssoplogo_transparent.png" alt="Icon">
-        </div> -->
         <h2>Register</h2>
         <form action="" method="POST">
 

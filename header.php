@@ -2,6 +2,9 @@
 session_start();
 
 include 'db.php';
+include 'check_permission.php';
+
+$can_verify_qr = isset($_SESSION['account_id']) && checkAccess($conn, $_SESSION['account_id'], 'qr_verify');
 
 $user_surname = '';
 if(isset($_SESSION['account_id']) && $_SESSION['logged_in'] === true) {
@@ -43,8 +46,8 @@ if (isset($_GET['logout'])) {
     <nav class="header-container">
         <img src="images/BAP Federation.jpg" alt="BAP" class="logo">
         <nav class="nav-links">
-            <a href="home.html">Home</a>
-            <a href="about.html">About</a>
+            <a href="home.php">Home</a>
+            <a href="about.php">About</a>
         </nav>
         <div class="user-menu">
         <?php if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true): ?>
@@ -52,7 +55,10 @@ if (isset($_GET['logout'])) {
                 <span class="user-greeting">Welcome, <?php echo $user_surname; ?></span>
                 <select id="nav-menu">
                     <option value="">Navigation</option>
-                    <option value="profile">My Profile</option>
+                    <option value="ecard">My E-Card</option>
+                    <?php if($can_verify_qr): ?>
+                        <option value="scanner">QR Verification</option>
+                    <?php endif; ?>
                     <option value="directory">Referee Directory</option>
                     <option value="logout">Logout</option>
                 </select>

@@ -1,0 +1,25 @@
+{
+    "name": "asus/bap",
+    "description": "BAP Federation E-card System",
+    "type": "project",
+    "require": {
+        "endroid/qr-code": "^4.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "Asus\\Bap\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "marcjacobniez",
+            "email": "marcjacobansao.niez@my.smciligan.edu.ph"
+        }
+    ],
+    "minimum-stability": "alpha",
+    "config": {
+        "allow-plugins": {
+            "endroid/installer": true
+        }
+    }
+}
